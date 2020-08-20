@@ -27,7 +27,7 @@ init_env () {
         echo "# Importing Amplify environment: ${ENV} (amplify env import)"
         amplify env import --name ${ENV} --config "${STACKINFO}" --awsInfo ${AWSCONFIG} --categories ${CATEGORIES} --yes;
         echo "# Initializing existing Amplify environment: ${ENV} (amplify init)"
-        amplify init --amplify ${AMPLIFY} --providers ${PROVIDERS} --codegen ${CODEGEN} --yes;
+        amplify init --amplify ${AMPLIFY} --providers ${PROVIDERS} --codegen ${CODEGEN} --categories ${CATEGORIES} --yes;
         echo "# Environment ${ENV} details:"
         amplify env get --name ${ENV}
     fi
@@ -95,8 +95,10 @@ CODEGEN="{\
 }"
 
 AUTHCONFIG="{\
-\"facebookAppIdUserPool\":\"2827506437534123\",\
-\"facebookAppSecretUserPool\":\"60b240fd68fd230733e5a62451f01aa6\"\
+\"facebookAppIdUserPool\":\"${FACEBOOK_APP_ID}\",\
+\"facebookAppSecretUserPool\":\"${FACEBOOK_APP_SECRET}\"\
+\"googleAppIdUserPool\":\"${GOOGLE_CLIENT_ID}\",\
+\"googleAppSecretUserPool\":\"${GOOGLE_CLIENT_SECRET}\"\
 }"
 
 CATEGORIES="{\
